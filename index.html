@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ibrahim Mobile Service</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<style>
+    :root {
+        color-scheme: dark;
+        --font-sans: 'Poppins', 'Urbanist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        --card-bg: rgba(10, 14, 25, 0.75);
+        --card-border: rgba(255, 255, 255, 0.15);
+        --text-primary: #f7f8fc;
+        --text-secondary: rgba(247, 248, 252, 0.72);
+        --accent: #31c4ff;
+        --radius-lg: 28px;
+        --shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        min-height: 100vh;
+        padding: clamp(24px, 6vw, 64px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-sans);
+        color: var(--text-primary);
+        background: radial-gradient(circle at top left, rgba(46, 104, 255, 0.35), transparent 55%),
+                    radial-gradient(circle at bottom right, rgba(255, 99, 195, 0.25), transparent 45%),
+                    #050710;
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+    }
+
+    body::before {
+        content: "";
+        position: absolute;
+        inset: -10%;
+        background: url('logo.png') center/cover no-repeat;
+        opacity: 0.08;
+        filter: saturate(0.6) blur(10px);
+        transform: scale(1.15);
+        z-index: -2;
+    }
+
+    body::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(140deg, rgba(22, 28, 42, 0.85), rgba(5, 7, 16, 0.92));
+        z-index: -1;
+    }
+
+    .page {
+        width: min(460px, 100%);
+    }
+
+    .card {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: var(--radius-lg);
+        padding: clamp(32px, 7vw, 48px) clamp(28px, 6vw, 44px);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(22px) saturate(140%);
+    }
+
+    .brand {
+        display: grid;
+        place-items: center;
+        text-align: center;
+        gap: 18px;
+        margin-bottom: clamp(28px, 5vw, 36px);
+    }
+
+    .brand__logo {
+        width: 112px;
+        aspect-ratio: 1;
+        border-radius: 24px;
+        object-fit: cover;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        box-shadow: 0 18px 32px rgba(7, 12, 27, 0.45);
+        background: rgba(255, 255, 255, 0.14);
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: clamp(1.75rem, 3vw, 2.35rem);
+        letter-spacing: 0.04em;
+        font-weight: 600;
+    }
+
+    .tagline {
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        max-width: 28ch;
+    }
+
+    nav[aria-label="Social links"] {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px 20px 14px 22px;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1.02rem;
+        letter-spacing: 0.01em;
+        color: #0b0f1c;
+        background: rgba(255, 255, 255, 0.94);
+        box-shadow: 0 14px 30px rgba(9, 14, 32, 0.35);
+        transition: transform 0.32s ease, box-shadow 0.32s ease, background 0.32s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .link span {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .link::after {
+        content: '\2197';
+        font-size: 1.1rem;
+        color: rgba(4, 10, 32, 0.55);
+        transition: transform 0.32s ease, color 0.32s ease;
+    }
+
+    .link::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 60%);
+        opacity: 0;
+        transition: opacity 0.32s ease;
+    }
+
+    .link:hover,
+    .link:focus-visible {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 36px rgba(7, 12, 27, 0.42);
+    }
+
+    .link:hover::after,
+    .link:focus-visible::after {
+        transform: translate(4px, -3px);
+        color: rgba(4, 10, 32, 0.8);
+    }
+
+    .link:hover::before,
+    .link:focus-visible::before {
+        opacity: 1;
+    }
+
+    .link:focus-visible {
+        outline: 3px solid rgba(49, 196, 255, 0.55);
+        outline-offset: 4px;
+    }
+
+    .link--instagram {
+        background: linear-gradient(135deg, #f09433 0%, #e6683c 30%, #dc2743 60%, #cc2366 85%, #bc1888 100%);
+        color: #fff;
+    }
+
+    .link--whatsapp {
+        background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+        color: #f6fffb;
+    }
+
+    .link--facebook {
+        background: linear-gradient(135deg, #1877f2 0%, #0f5ad7 100%);
+        color: #f6f8ff;
+    }
+
+    .link--website {
+        background: linear-gradient(135deg, #31c4ff 0%, #0070f3 100%);
+        color: #061427;
+    }
+
+    .link--tiktok {
+        background: linear-gradient(135deg, #25f4ee 0%, #fe2c55 50%, #000000 100%);
+        color: #f8fbff;
+    }
+
+    footer {
+        margin-top: clamp(26px, 5vw, 36px);
+        text-align: center;
+        font-size: 0.85rem;
+        color: rgba(232, 236, 248, 0.68);
+    }
+
+    footer a {
+        color: inherit;
+        text-decoration: none;
+        border-bottom: 1px dotted rgba(232, 236, 248, 0.4);
+        transition: color 0.25s ease;
+    }
+
+    footer a:hover {
+        color: var(--accent);
+    }
+
+    @media (max-width: 520px) {
+        body::before {
+            opacity: 0.12;
+            filter: saturate(0.8) blur(14px);
+        }
+
+        .card {
+            padding: 30px 24px;
+        }
+
+        .link {
+            font-size: 1rem;
+            padding: 14px 18px;
+        }
+    }
+</style>
+<body>
+    <div class="page">
+        <main class="card" role="main">
+            <header class="brand">
+                <img src="logo.png" alt="Ibrahim Mobile Service logo" class="brand__logo" loading="lazy">
+                <h1>Ibrahim Mobile Service</h1>
+                <p class="tagline">Expert mobile phone repairs, unlocks, premium accessories, and personalized care in one place.</p>
+            </header>
+            <nav aria-label="Social links">
+                <a href="https://www.instagram.com/ibrahim_mobile_service?igsh=cWFiMHhuNXRhenVm" target="_blank" rel="noopener" class="link link--instagram">
+                    <span>Instagram</span>
+                </a>
+                <a href="https://wa.me/70339383" target="_blank" rel="noopener" class="link link--whatsapp">
+                    <span>WhatsApp</span>
+                </a>
+                <a href="https://www.facebook.com/share/19rHyubxK8/?mibextid=wwXIfr" target="_blank" rel="noopener" class="link link--facebook">
+                    <span>Facebook</span>
+                </a>
+                <a href="https://ibrahimservices.com/" target="_blank" rel="noopener" class="link link--website">
+                    <span>Website</span>
+                </a>
+                <a href="https://www.tiktok.com/@ibrahim_mobile_service?_t=ZS-90LaFsjD9lP&_r=1" target="_blank" rel="noopener" class="link link--tiktok">
+                    <span>TikTok</span>
+                </a>
+            </nav>
+            <footer>© 2025 Ibrahim Mobile Service · Crafted with care for our community</footer>
+        </main>
+    </div>
+</body>
+</html>
